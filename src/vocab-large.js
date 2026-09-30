@@ -1,0 +1,69 @@
+// Frequency-ranked additions for the local 1,020-choice tournament experiment.
+export const EXPANSION_VOCAB = `
+to of in for on with as at by from his one
+about more it's their there her which people don't also now i'm
+than first him two any then back well way most much here
+right off take many you're last that's best such man long something
+can't used both come part state three between better find little since
+own things during game i've thing give house place school next mr
+without against didn't end show sure team ever family please put money
+second someone left number city lot name company doing few he's real
+called having set thought done however getting god government group looking public
+top women business care start system times week already anything case nothing
+person today change enough everything full live making point read there's yet
+doesn't four hard mean support including power seen states stop based believe
+call head men national took white came job side though try went
+actually american later less order party says service country open season shit
+thank children everyone general they're trying united using area black following law
+makes together war whole car face five kind per president working course
+games health hope important least means news within able book early friends
+i'll information local post thanks video young ago others social court fact
+given guys half hand isn't level often single become body coming control
+food guy hours office pay problem south we're fuck history known large
+research room several started taking university win wrong along anyone else girl
+john matter pretty air bit friend hit needs nice playing probably saying
+understand yeah york class close comes i'd idea international looks past possible
+wanted cause due happy human members months move question series woman ask
+community data late leave north saw special watch won't either fucking future
+million morning police short stay taken age buy deal rather reason red
+report soon third turn whether among check development form further minutes myself
+services yourself act although asked child fun living major media phone players
+art behind building easy gonna market non plan political six talking west
+works according available education final former front kids list ready sometimes son
+street wasn't bring college current example experience heard london meet program type
+baby chance father march process she's study action clear gave gets himself
+month outside self students board cost cut dr field held instead main
+moment mother road seems thinking town wants de department energy fight fine
+force issue played points price re rest results running shows space summer
+term wife america date goes killed land miss project sex shot site
+strong you'll account co especially eyes include june parents period position record
+similar total club common died film happened knew lead likely military perfect
+personal security share st tv what's won april center county couple dead
+english happen industry inside issues online player private problems return rights sense
+test view weeks break british companies event higher hour member middle needed
+present result sorry takes training wish wouldn't answer boy design finally girls
+gone guess interest july king policy society added al alone average bank
+brought certain church east hands hot let's longer medical movie original park
+performance press received role sent themselves tried worked worth areas became bill
+books cool director exactly giving ground meeting provide questions relationship september sound
+source usually value evidence follow lives official ok production rate reading round
+save stand stuff tax whatever amount blue countries david drive eat fast
+federal feeling felt green league management match picture size step trust you've
+central changes england forward groups hey key mom page paid range review
+science trade uk upon various attention brother cannot character chief cup football
+haven't james led looked lower natural october property quality send style vote
+amazing august blood china complete dog economic hell involved itself lord november
+oil related serious stage terms title add article attack born couldn't damn
+decided decision enjoy entire french january kill met poor release situation technology
+turned website written choice code considered continue council cover currently door election
+european events financial foreign hair increase legal lose michael pick race seem
+seven sign simple simply staff super union washington bed began built career
+changed crazy daily daughter december die difficult figure hospital knows loss modern
+ones paper parts popular published safe starting systems version whose writing army
+australia forget goal huge internet listen okay practice rules sir success towards
+waiting ways access aren't base below created followed la lol mark missing
+offer pass professional released risk schools table ten ball box card cases
+district europe george india mine minister note percent piece products recent
+`
+  .split(/\s+/)
+  .filter(Boolean);

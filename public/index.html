@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>jev — a 1,020-choice language model experiment</title>
+    <meta name="description" content="One word at a time. 1,020 candidates. Still strange." />
+    <link rel="canonical" href="https://jevchat.lumenrot.com/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="jev" />
+    <meta property="og:url" content="https://jevchat.lumenrot.com/" />
+    <meta property="og:title" content="jev — a 1,020-choice language model experiment" />
+    <meta property="og:description" content="One word at a time. 1,020 candidates. Still strange." />
+    <meta property="og:image" content="https://jevchat.lumenrot.com/jev-logo.png" />
+    <meta property="og:image:width" content="256" />
+    <meta property="og:image:height" content="256" />
+    <meta property="og:image:alt" content="Jev's teal pixel speech-bubble logo" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="jev — a 1,020-choice language model experiment" />
+    <meta name="twitter:description" content="One word at a time. 1,020 candidates. Still strange." />
+    <meta name="twitter:image" content="https://jevchat.lumenrot.com/jev-logo.png" />
+    <meta name="twitter:image:alt" content="Jev's teal pixel speech-bubble logo" />
+    <link rel="icon" type="image/png" href="/jev-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Fragment+Mono:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="top">
+        <a class="brand" href="/" aria-label="Jevchat home">
+          <img class="logo" src="/jev-logo.png" alt="" width="24" height="24" />
+          <span class="wordmark">JEV</span>
+          <span class="tag">/ chat</span>
+        </a>
+        <button class="how-trigger" id="how-open" type="button">but how?</button>
+      </header>
+
+      <section id="transcript" class="transcript show-p" aria-live="polite">
+        <div id="empty" class="empty">
+          <p class="lead">
+            jev as an llm model. it is not good.
+          </p>
+          <div class="suggestions">
+            <button class="chip" data-say="who are you?">who are you?</button>
+            <button class="chip" data-say="write a poem about the moon">write a moon poem</button>
+            <button class="chip" data-say="tell me a story">tell me a story</button>
+          </div>
+        </div>
+      </section>
+
+      <form id="composer" class="composer" autocomplete="off">
+        <input
+          id="input"
+          class="input"
+          type="text"
+          placeholder="say something…"
+          aria-label="Message"
+          maxlength="280"
+        />
+        <button id="send" class="send" type="submit" aria-label="Send">
+          <span>send</span>
+        </button>
+      </form>
+    </main>
+
+    <dialog class="how" id="how-dialog" aria-labelledby="how-title">
+      <div class="how-head">
+        <h2 id="how-title">how jev talks</h2>
+        <button class="how-close" id="how-close" type="button" aria-label="Close explanation">close</button>
+      </div>
+
+      <ol class="how-steps">
+        <li>
+          <span class="step-label">01 / read</span>
+          <pre>you: tell me a story
+          │
+          ▼
+conversation + reply so far</pre>
+        </li>
+        <li>
+          <span class="step-label">02 / ask</span>
+          <p>jev asks one question:</p>
+          <pre>“which single word comes next?”</pre>
+        </li>
+        <li>
+          <span class="step-label">03 / split</span>
+          <p>the 1,020 candidates are divided into four parallel groups.</p>
+          <pre>bucket a  [255 words] ─┐
+bucket b  [255 words] ─┤
+bucket c  [255 words] ─┼─▶ jev scores each group
+bucket d  [255 words] ─┘</pre>
+          <p class="aside">jev can also borrow a few words from your messages.</p>
+        </li>
+        <li>
+          <span class="step-label">04 / shortlist</span>
+          <p>the best 48 choices from each group move forward.</p>
+          <pre>4 groups × 48 choices
+          │
+          ▼
+up to 192 finalists + <span class="stop">&lt;eot&gt;</span></pre>
+        </li>
+        <li>
+          <span class="step-label">05 / pick</span>
+          <p>the finalists get compared together, then jev makes a weighted random pick.</p>
+          <pre>the       ██████████  41%
+moon      █████       21%
+is        ███         13%
+<span class="stop">&lt;eot&gt;</span>     ██          10%
+
+weighted draw ───▶ <span class="picked">moon</span>
+                     │
+reply: “the moon” ◀──┘
+        │
+        └────────────── ↺</pre>
+          <p class="aside">recent words get pushed down so jev loops less.</p>
+        </li>
+        <li>
+          <span class="step-label">06 / stop</span>
+          <pre><span class="stop">&lt;eot&gt;</span> is picked
+      +
+probability ≥ 10%
+      │
+      ▼
+reply ends
+
+min 2 words  /  max 24 words</pre>
+        </li>
+      </ol>
+
+      <div class="how-after">
+        <span class="step-label">one more number</span>
+        <p><code>end-of-chat</code> is a separate check made after the reply. it guesses whether the whole conversation feels finished.</p>
+      </div>
+
+      <p class="how-end">one word at a time. 1,020 candidates. two rounds. still strange.</p>
+    </dialog>
+
+    <div id="tip" class="tip" role="tooltip" hidden></div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

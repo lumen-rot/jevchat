@@ -1,0 +1,18 @@
+# dependencies / build
+node_modules/
+dist/
+.wrangler/
+
+# secrets (use .dev.vars for local Cloudflare secrets)
+.dev.vars
+.env
+
+# os / editor
+.DS_Store
+*.log
+
+# generated eval artifacts — keep prompts.jsonl + sample-results.jsonl only
+eval/eval-results*.jsonl
+eval/eval-grades*.jsonl
+eval/sample-grades.jsonl
+eval/*.errors

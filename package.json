@@ -1,0 +1,16 @@
+{
+  "name": "jev-chat",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node dev-server.mjs",
+    "worker:dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "secret": "wrangler secret put JEV_API_KEY",
+    "eval:run": "node eval/run.mjs",
+    "eval:grade": "node eval/grade.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.42.0"
+  }
+}
